@@ -5,14 +5,14 @@
 **Purpose**:
 To refactor our existing VBA code to analyze stock volume and returns more efficiently.
 
-[VBA_Challenge](Resources/VBA_Challenge.xlsm)
+[VBA_Challenge](resources/VBA_Challenge.xlsm)
 
 ## Analysis
 The addition of arrays to our code substantially decreased the time it takes for the code to run. For example, my original code ran at about 0.27s for both 2017 and 2018 worksheets. However, my refactored code ran at approximately 0.06s for 2017 and 2018 worksheets.
 
 ---
-![2017](Resources/VBA_Challenge_2017.png)
-![2018](Resources/VBA_Challenge_2018.png)
+![2017](resources/VBA_Challenge_2017.png)
+![2018](resources/VBA_Challenge_2018.png)
 ---
 
 In the refactored code, the values for tickerVolumes, tickerStartingPrices, and tickerEndingPrices are generated as arrays. This allows all of the subsequent data to be populated into the array as the code runs.
@@ -21,8 +21,7 @@ In the refactored code, the values for tickerVolumes, tickerStartingPrices, and 
     
     Dim tickerStartingPrices(12) As Double
     
-    Dim tickerEndingPrices(12) As Double
-'''
+    Dim tickerEndingPrices(12) As Double'''
 
 
 In addition, instead of using a "For Loop" to iterate through the corresponding tickers in the ticker array, I created a variable called "tickerIndex" and set its value to 0. At the end of the code, the 1 is added to the value of tickerIndex. I then passed tickerIndex as an argument into each of the arrays used in this analysis.
@@ -32,15 +31,13 @@ tickerIndex = 0
 
 ...
 
-tickerIndex = tickerIndex + 1
-
+tickerIndex = tickerIndex + 1'''
 
 A beneficial component of the refactored code is that it sets the value of ticker volume of all tickers to 0 upfront.
 '''VBA: 
     For i = 0 To 11
         tickerVolumes(i) = 0
-    Next i
-    '''
+    Next i'''
 In my original code, I did not give tickerVolume its own "For Loop", which meant that the entire code would run prior to setting the volume for the next ticker to 0. 
 
 ## Challenges
